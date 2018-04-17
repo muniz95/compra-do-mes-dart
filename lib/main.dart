@@ -6,7 +6,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:compra_do_mes/redux/app/AppState.dart';
 import 'package:compra_do_mes/redux/app/AppActions.dart';
 import 'package:compra_do_mes/redux/Store.dart';
-import 'package:compra_do_mes/views/HomeView.dart';
+import 'package:compra_do_mes/views/MainView.dart';
 import 'package:redux/redux.dart';
 
 Future<Null> main() async {
@@ -37,12 +37,12 @@ class _CompraDoMesAppState extends State<CompraDoMesApp> {
     return new StoreProvider<AppState>(
       store: widget.store,
       child: new MaterialApp(
-        title: 'CompraDoMes',
+        title: 'Compra Do Mes',
         theme: new ThemeData(
-          primaryColor: new Color(0xFFF4FF68),
+          primaryColor: new Color(0xFF25CDFF),
           accentColor: new Color(0xFFFFAD32),
         ),
-        home: new HomeView(),
+        home: new MainView(),
       ),
     );
   }

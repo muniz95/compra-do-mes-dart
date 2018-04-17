@@ -3,7 +3,7 @@ import 'package:compra_do_mes/redux/product/ProductActions.dart';
 import 'package:compra_do_mes/redux/product/ProductState.dart';
 import 'package:redux/redux.dart';
 
-final distroReducer = combineReducers<ProductState>([
+final productReducer = combineReducers<ProductState>([
   new TypedReducer<ProductState, AddProductAction>(_addProduct),
   new TypedReducer<ProductState, SetCurrentProductAction>(_setCurrentProduct),
   new TypedReducer<ProductState, RemoveProductAction>(_removeProduct),

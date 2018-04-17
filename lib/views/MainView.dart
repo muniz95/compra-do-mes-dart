@@ -3,14 +3,16 @@ import 'dart:io';
 // import 'package:compra_do_mes/models/Product.dart';
 // import 'package:compra_do_mes/redux/app/AppState.dart';
 import 'package:flutter/material.dart';
+
+import 'product/ProductForm.dart';
 // import 'package:flutter_redux/flutter_redux.dart';
 
-class HomeView extends StatefulWidget {
+class MainView extends StatefulWidget {
   @override
-  _HomeViewState createState() => new _HomeViewState();
+  _MainViewState createState() => new _MainViewState();
 }
 
-class _HomeViewState extends State<HomeView>
+class _MainViewState extends State<MainView>
     with SingleTickerProviderStateMixin {
   static final GlobalKey<ScaffoldState> scaffoldKey =
       new GlobalKey<ScaffoldState>();
@@ -129,11 +131,12 @@ class _HomeViewState extends State<HomeView>
       body: new TabBarView(
         controller: _controller,
         children: <Widget>[
-          new Column(
-            children: <Widget>[
-              new Text('Formulário de produtos'),
-            ],
-          ),
+          new ProductForm(),
+          // new Column(
+          //   children: <Widget>[
+          //     new Text('Formulário de produtos'),
+          //   ],
+          // ),
           new Column(
             children: <Widget>[
               new Text('Lista de compras'),
