@@ -102,6 +102,7 @@ class ProductFormContent extends StatelessWidget {
     if (form.validate()) {
       form.save();
       viewModel.addProduct(viewModel.product);
+      form.reset();
     }
   }
 }
