@@ -1,3 +1,4 @@
+import 'package:compra_do_mes/constants/LoadingStatus.dart';
 import 'package:compra_do_mes/redux/app/AppState.dart';
 import 'package:compra_do_mes/views/product/ProductForm.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class ProductPageContent extends StatelessWidget {
       children: <Widget>[
         new Expanded(
           child: new LoadingView(
-            status: viewModel.status,
+            status: LoadingStatus.success,
             loadingContent: new PlatformAdaptiveProgressIndicator(),
             errorContent: new ErrorView(onRetry: null),
             successContent: new ProductForm(),

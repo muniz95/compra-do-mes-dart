@@ -23,7 +23,7 @@ class DatabaseHelper {
 
   initDb() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "main.db");
+    String path = join(documentsDirectory.path, "compra-do-mes.db");
     var theDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     return theDb;
   }
@@ -31,7 +31,7 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     // When creating the db, create the table
     await db.execute(
-    "CREATE TABLE Product(id INTEGER PRIMARY KEY, username TEXT, password TEXT)");
+    "CREATE TABLE Product(id INTEGER PRIMARY KEY, name TEXT, price DOUBLE, quantity INTEGER)");
     print("Created tables");
   }
 

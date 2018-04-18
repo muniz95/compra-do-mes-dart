@@ -1,11 +1,8 @@
 import 'dart:io';
 
-// import 'package:compra_do_mes/models/Product.dart';
-// import 'package:compra_do_mes/redux/app/AppState.dart';
+import 'package:compra_do_mes/views/cart/CartPage.dart';
+import 'package:compra_do_mes/views/product/ProductPage.dart';
 import 'package:flutter/material.dart';
-
-import 'product/ProductForm.dart';
-// import 'package:flutter_redux/flutter_redux.dart';
 
 class MainView extends StatefulWidget {
   @override
@@ -131,17 +128,8 @@ class _MainViewState extends State<MainView>
       body: new TabBarView(
         controller: _controller,
         children: <Widget>[
-          new ProductForm(),
-          // new Column(
-          //   children: <Widget>[
-          //     new Text('Formulário de produtos'),
-          //   ],
-          // ),
-          new Column(
-            children: <Widget>[
-              new Text('Lista de compras'),
-            ],
-          ),
+          new ProductPage(),
+          new CartPage(),
           new Column(
             children: <Widget>[
               new Text('Histórico de compras'),

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:compra_do_mes/redux/app/AppState.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import 'ProductFormViewModel.dart';
@@ -30,7 +31,7 @@ class ProductFormContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var loginBtn = new RaisedButton(
-      onPressed: _submit,
+      onPressed: () => _submit(context),
       child: new Text("Salvar"),
       color: Colors.primaries[0],
     );
@@ -51,6 +52,7 @@ class ProductFormContent extends StatelessWidget {
               new Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new TextFormField(
+                  keyboardType: TextInputType.number,
                   onSaved: (val) => viewModel.product.price = double.parse(val),
                   decoration: new InputDecoration(labelText: "Preço"),
                 ),
@@ -58,6 +60,7 @@ class ProductFormContent extends StatelessWidget {
               new Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new TextFormField(
+                  keyboardType: TextInputType.number,
                   onSaved: (val) => viewModel.product.quantity = int.parse(val),
                   decoration: new InputDecoration(labelText: "Quantidade"),
                 ),
@@ -70,19 +73,15 @@ class ProductFormContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
     );
 
-    return new Scaffold(
-      appBar: null,
-      key: scaffoldKey,
-      body: new Container(
-        child: new Center(
-          child: new ClipRect(
-            child: new BackdropFilter(
-              filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-              child: new Container(
-                child: loginForm,
-                height: 300.0,
-                width: 300.0,
-              ),
+    return new Container(
+      child: new Center(
+        child: new ClipRect(
+          child: new BackdropFilter(
+            filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+            child: new Container(
+              child: loginForm,
+              height: 300.0,
+              width: 300.0,
             ),
           ),
         ),
@@ -96,13 +95,18 @@ class ProductFormContent extends StatelessWidget {
       : null;
   }
 
-  void _submit() {
+  void _submit(BuildContext context) {
     final form = formKey.currentState;
 
     if (form.validate()) {
       form.save();
       viewModel.addProduct(viewModel.product);
       form.reset();
+      _showSnackBar(context, 'Produto salvo com sucesso!');
     }
+  }
+  
+  void _showSnackBar(BuildContext context, String text) {
+    Scaffold.of(context).showSnackBar(new SnackBar(content: new Text(text)));
   }
 }
