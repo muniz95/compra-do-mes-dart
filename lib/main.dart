@@ -39,7 +39,7 @@ class _CompraDoMesAppState extends State<CompraDoMesApp> {
       child: new MaterialApp(
         title: 'Compra Do Mes',
         theme: new ThemeData(
-          primaryColor: new Color(0xFF25CDFF),
+          primaryColor: new Color(0xFF4095CA),
           accentColor: new Color(0xFFFFAD32),
         ),
         home: new MainView(),

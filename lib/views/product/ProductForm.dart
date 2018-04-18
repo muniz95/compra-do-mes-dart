@@ -30,10 +30,10 @@ class ProductFormContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var loginBtn = new RaisedButton(
+    var saveBtn = new RaisedButton(
       onPressed: () => _submit(context),
       child: new Text("Salvar"),
-      color: Colors.primaries[0],
+      color: Theme.of(context).primaryColor,
     );
     var loginForm = new Column(
       children: <Widget>[
@@ -68,7 +68,7 @@ class ProductFormContent extends StatelessWidget {
             ],
           ),
         ),
-        loginBtn
+        saveBtn,
       ],
       crossAxisAlignment: CrossAxisAlignment.center,
     );
@@ -80,7 +80,6 @@ class ProductFormContent extends StatelessWidget {
             filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: new Container(
               child: loginForm,
-              height: 300.0,
               width: 300.0,
             ),
           ),
