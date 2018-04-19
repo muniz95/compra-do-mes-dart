@@ -89,6 +89,7 @@ class ProductFormContent extends State<ProductForm> {
 
   void _submit(BuildContext context) {
     final form = formKey.currentState;
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
 
     if (form.validate()) {
       form.save();

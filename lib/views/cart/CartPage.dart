@@ -22,20 +22,24 @@ class CartPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: <Widget>[
-        new Flexible(
-          child: new ListView.builder(
-            padding: new EdgeInsets.all(8.0),
-            reverse: true,
-            itemBuilder: (_, int index) =>
-              new CartProductItem(product: viewModel.products[index]),
-            itemCount: viewModel.products.length,
+    return
+    new Scaffold(
+      body: new Column(
+        children: <Widget>[
+          new Flexible(
+            child: new ListView.builder(
+              padding: new EdgeInsets.all(8.0),
+              itemBuilder: (_, int index) =>
+                new CartProductItem(product: viewModel.products[index]),
+              itemCount: viewModel.products.length,
+            ),
           ),
-        ),
-        new Divider(height: 1.0),
-        new Text('Total de produtos: ${viewModel.products.length}')
-      ],
+        ],
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () {},
+        child: new Icon(Icons.add),
+      ),
     );
   }
 
