@@ -27,7 +27,12 @@ class CartProductItem extends StatelessWidget {
                 ),
               ],
             ),
-          ),  
+          ),
+          new Column(
+            children: <Widget>[
+              new Text('Quantidade: ${product.quantity}')
+            ],
+          ),
         ],
       ),
     );

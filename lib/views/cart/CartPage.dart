@@ -1,6 +1,7 @@
 import 'package:compra_do_mes/redux/app/AppState.dart';
 import 'package:compra_do_mes/views/cart/CartProductItem.dart';
 import 'package:compra_do_mes/views/cart/CartViewModel.dart';
+import 'package:compra_do_mes/views/product/ProductForm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -37,7 +38,11 @@ class CartPageContent extends StatelessWidget {
         ],
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(new MaterialPageRoute(
+            builder: (BuildContext context) => new ProductForm()
+          ));
+        },
         child: new Icon(Icons.add),
       ),
     );

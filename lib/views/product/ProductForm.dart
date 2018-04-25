@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:compra_do_mes/models/Product.dart';
 import 'package:compra_do_mes/redux/app/AppState.dart';
 import 'package:compra_do_mes/redux/product/ProductActions.dart';
@@ -29,6 +27,7 @@ class ProductFormContent extends State<ProductForm> {
       color: Theme.of(context).primaryColor,
     );
     var loginForm = new Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         new Form(
           key: formKey,
@@ -66,16 +65,11 @@ class ProductFormContent extends State<ProductForm> {
       crossAxisAlignment: CrossAxisAlignment.center,
     );
 
-    return new Container(
-      child: new Center(
-        child: new ClipRect(
-          child: new BackdropFilter(
-            filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-            child: new Container(
-              child: loginForm,
-              width: 300.0,
-            ),
-          ),
+    return new Scaffold(
+      appBar: new AppBar(),
+      body: new Container(
+        child: new Center(
+          child: loginForm,
         ),
       ),
     );

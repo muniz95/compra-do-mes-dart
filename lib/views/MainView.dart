@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:compra_do_mes/views/cart/CartPage.dart';
-import 'package:compra_do_mes/views/product/ProductPage.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -21,7 +20,7 @@ class _MainViewState extends State<MainView>
   @override
   void initState() {
     super.initState();
-    _controller = new TabController(length: 3, vsync: this);
+    _controller = new TabController(length: 2, vsync: this);
     _searchQuery = new TextEditingController();
   }
 
@@ -119,7 +118,6 @@ class _MainViewState extends State<MainView>
           controller: _controller,
           isScrollable: true,
           tabs: <Tab>[
-            new Tab(text: 'Cadastro'),
             new Tab(text: 'Lista de compras'),
             new Tab(text: 'Histórico'),
           ],
@@ -128,16 +126,12 @@ class _MainViewState extends State<MainView>
       body: new TabBarView(
         controller: _controller,
         children: <Widget>[
-          new ProductPage(),
           new CartPage(),
           new Column(
             children: <Widget>[
               new Text('Histórico de compras'),
             ],
           ),
-          // new ProductForm(),
-          // new CartListPage(),
-          // new CartListHistoryPage(),
         ],
       ),
     );
