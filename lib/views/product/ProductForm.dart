@@ -1,3 +1,4 @@
+import 'package:compra_do_mes/data/DBHelper.dart';
 import 'package:compra_do_mes/models/Product.dart';
 import 'package:compra_do_mes/redux/app/AppState.dart';
 import 'package:compra_do_mes/redux/product/ProductActions.dart';
@@ -87,12 +88,13 @@ class ProductFormContent extends State<ProductForm> {
 
     if (form.validate()) {
       form.save();
-      var store = StoreProvider.of<AppState>(context);
-      store.dispatch(new AddProductAction(
-        new Product(name: _name, price: _price, quantity: _quantity)
-      ));
-      form.reset();
-      _showSnackBar(context, 'Produto salvo com sucesso!');
+      Product product = new Product(name: _name, price: _price, quantity: _quantity);
+      DatabaseHelper().saveProduct(product).then((onValue) {
+        var store = StoreProvider.of<AppState>(context);
+        store.dispatch(new AddProductAction(product));
+        form.reset();
+        _showSnackBar(context, 'Produto salvo com sucesso!');
+      });
     }
   }
   
