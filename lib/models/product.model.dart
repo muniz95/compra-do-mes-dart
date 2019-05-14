@@ -16,7 +16,7 @@ class Product {
   }
 
   Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = new Map<String, dynamic>();
+    Map<String, dynamic> map = Map<String, dynamic>();
     map["name"] = name;
     map["price"] = price;
     map["quantity"] = quantity;

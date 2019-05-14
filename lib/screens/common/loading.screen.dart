@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:compra_do_mes/constants/LoadingStatus.dart';
+import 'package:compra_do_mes/constants/loading_status.dart';
 import 'package:meta/meta.dart';
 
 class LoadingView extends StatefulWidget {
-  static final Key loadingContentKey = new ValueKey('loading');
-  static final Key errorContentKey = new ValueKey('error');
-  static final Key successContentKey = new ValueKey('success');
+  static final Key loadingContentKey = ValueKey('loading');
+  static final Key errorContentKey = ValueKey('error');
+  static final Key successContentKey = ValueKey('success');
 
   LoadingView({
     @required this.status,
@@ -20,7 +20,7 @@ class LoadingView extends StatefulWidget {
   final Widget successContent;
 
   @override
-  LoadingViewState createState() => new LoadingViewState();
+  LoadingViewState createState() => LoadingViewState();
 }
 
 class LoadingViewState extends State<LoadingView>
@@ -39,18 +39,18 @@ class LoadingViewState extends State<LoadingView>
   @override
   void initState() {
     super.initState();
-    _loadingController = new AnimationController(
-      duration: new Duration(milliseconds: 350),
+    _loadingController = AnimationController(
+      duration: Duration(milliseconds: 350),
       vsync: this,
     );
 
-    _errorController = new AnimationController(
-      duration: new Duration(milliseconds: 350),
+    _errorController = AnimationController(
+      duration: Duration(milliseconds: 350),
       vsync: this,
     );
 
-    _successController = new AnimationController(
-      duration: new Duration(milliseconds: 400),
+    _successController = AnimationController(
+      duration: Duration(milliseconds: 400),
       vsync: this,
     );
 
@@ -112,22 +112,22 @@ class LoadingViewState extends State<LoadingView>
 
   @override
   Widget build(BuildContext context) {
-    return new Stack(
+    return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        new _TransitionAnimation(
+        _TransitionAnimation(
           key: LoadingView.loadingContentKey,
           controller: _loadingController,
           child: widget.loadingContent,
           isVisible: widget.status == LoadingStatus.loading,
         ),
-        new _TransitionAnimation(
+        _TransitionAnimation(
           key: LoadingView.errorContentKey,
           controller: _errorController,
           child: widget.errorContent,
           isVisible: widget.status == LoadingStatus.error,
         ),
-        new _TransitionAnimation(
+        _TransitionAnimation(
           key: LoadingView.successContentKey,
           controller: _successController,
           child: widget.successContent,
@@ -145,20 +145,20 @@ class _TransitionAnimation extends StatelessWidget {
     @required this.child,
     @required this.isVisible,
   })
-      : _opacity = new Tween(begin: 0.0, end: 1.0).animate(
-          new CurvedAnimation(
+      : _opacity = Tween(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(
             parent: controller,
-            curve: new Interval(
+            curve: Interval(
               0.000,
               0.650,
               curve: Curves.ease,
             ),
           ),
         ),
-        _yTranslation = new Tween(begin: 40.0, end: 0.0).animate(
-          new CurvedAnimation(
+        _yTranslation = Tween(begin: 40.0, end: 0.0).animate(
+          CurvedAnimation(
             parent: controller,
-            curve: new Interval(
+            curve: Interval(
               0.000,
               0.650,
               curve: Curves.ease,
@@ -176,18 +176,18 @@ class _TransitionAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new AnimatedBuilder(
+    return AnimatedBuilder(
       animation: controller,
       builder: (BuildContext context, _) {
-        return new IgnorePointer(
+        return IgnorePointer(
           ignoring: !isVisible,
-          child: new Transform(
-            transform: new Matrix4.translationValues(
+          child: Transform(
+            transform: Matrix4.translationValues(
               0.0,
               _yTranslation.value,
               0.0,
             ),
-            child: new Opacity(
+            child: Opacity(
               opacity: _opacity.value,
               child: child,
             ),

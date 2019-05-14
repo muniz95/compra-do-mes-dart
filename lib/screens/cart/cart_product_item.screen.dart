@@ -1,4 +1,4 @@
-import 'package:compra_do_mes/models/Product.dart';
+import 'package:compra_do_mes/models/product.model.dart';
 import 'package:flutter/material.dart';
 
 class CartProductItem extends StatelessWidget {
@@ -8,29 +8,29 @@ class CartProductItem extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
-      child: new Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Expanded(
-            child: new Column(
+          Expanded(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text(
+                Text(
                   product.name,
                   style: Theme.of(context).textTheme.subhead
                 ),
-                new Container(
+                Container(
                   margin: const EdgeInsets.only(top: 5.0),
-                  child: new Text(product.price.toString()),
+                  child: Text(product.price.toString()),
                 ),
               ],
             ),
           ),
-          new Column(
+          Column(
             children: <Widget>[
-              new Text('Quantidade: ${product.quantity}')
+              Text('Quantidade: ${product.quantity}')
             ],
           ),
         ],
