@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-class ErrorView extends InfoMessageView {
-  static final Key tryAgainButtonKey = new Key('tryAgainButton');
+class ErrorScreen extends InfoMessageScreen {
+  static final Key tryAgainButtonKey = Key('tryAgainButton');
 
-  ErrorView({
+  ErrorScreen({
     String title,
     String description,
     @required VoidCallback onRetry,
@@ -18,8 +18,8 @@ class ErrorView extends InfoMessageView {
         );
 }
 
-class InfoMessageView extends StatelessWidget {
-  InfoMessageView({
+class InfoMessageScreen extends StatelessWidget {
+  InfoMessageScreen({
     Key key,
     @required this.title,
     @required this.description,
@@ -36,8 +36,8 @@ class InfoMessageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var content = <Widget>[
-      new CircleAvatar(
-        child: new Icon(
+      CircleAvatar(
+        child: Icon(
           Icons.info_outline,
           color: Colors.white,
           size: 52.0,
@@ -45,16 +45,16 @@ class InfoMessageView extends StatelessWidget {
         backgroundColor: Colors.black,
         radius: 42.0,
       ),
-      new Padding(
+      Padding(
         padding: const EdgeInsets.only(top: 16.0),
-        child: new Text(
+        child: Text(
           title,
-          style: new TextStyle(fontSize: 24.0),
+          style: TextStyle(fontSize: 24.0),
         ),
       ),
-      new Padding(
+      Padding(
         padding: const EdgeInsets.only(top: 8.0),
-        child: new Text(
+        child: Text(
           description,
           textAlign: TextAlign.center,
         ),
@@ -62,24 +62,24 @@ class InfoMessageView extends StatelessWidget {
     ];
 
     if (onActionButtonTapped != null) {
-      content.add(new Padding(
+      content.add(Padding(
         padding: const EdgeInsets.only(top: 12.0),
-        child: new FlatButton(
+        child: FlatButton(
           key: actionButtonKey,
           onPressed: onActionButtonTapped,
-          child: new Text(
+          child: Text(
             'TRY AGAIN',
-            style: new TextStyle(color: Colors.green),
+            style: TextStyle(color: Colors.green),
           ),
         ),
       ));
     }
 
-    return new SingleChildScrollView(
-      child: new Container(
+    return SingleChildScrollView(
+      child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: new Center(
-          child: new Column(
+        child: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: content,
           ),
