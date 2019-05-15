@@ -13,7 +13,6 @@ class ProductService {
       link: link,
     ),
   );
-
 }
 
 String toggleIsCompletedMutation(result, index) {
@@ -34,20 +33,30 @@ String deleteProductMutation(result, index) {
 }
 
 String addProductMutation(product) {
-  return ("""mutation AddProduct{
-              insert_product(objects: {isCompleted: false, product: "$product"}) {
-                returning {id} }
-                }""");
+  return ("""
+    mutation AddProduct{
+      insert_product(
+        objects: {
+          name: "${product.name}",
+          price: "${product.price}",
+          quantity: ${product.quantity}
+        }
+      )
+      {
+        returning {id}
+      }
+    }
+  """);
 }
 
 String fetchQuery() {
   return ("""query ProductGet{
               product {
-                  id
-                  name
-                  price
-                  quantity
-                  }} """);
+                id
+                name
+                price
+                quantity
+              }} """);
 }
 
 ProductService productService = ProductService();

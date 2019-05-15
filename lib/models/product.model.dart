@@ -1,13 +1,13 @@
 class Product {
+  String name;
+  double price;
+  int quantity;
+
   Product({
     this.name,
     this.price,
     this.quantity
   });
-
-  String name;
-  double price;
-  int quantity;
 
   factory Product.map(Map<String, dynamic> obj) {
     if (obj == null) {

@@ -1,8 +1,7 @@
+import 'package:compra_do_mes/components/cart_product_item.component.dart';
 import 'package:compra_do_mes/services/product.service.dart';
 import 'package:flutter/material.dart';
-import 'package:compra_do_mes/bloc/cart.bloc.dart';
 import 'package:compra_do_mes/models/product.model.dart';
-import 'package:compra_do_mes/screens/cart/cart_product_item.screen.dart';
 import 'package:compra_do_mes/screens/product/product_form.screen.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -12,14 +11,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  CartBloc _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = CartBloc()..init();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
@@ -42,7 +33,7 @@ class _CartPageState extends State<CartPage> {
                     List<Product> products = Product.fromList(result.data["product"]);
                     return ListView.builder(
                       padding: EdgeInsets.all(8.0),
-                      itemBuilder: (_, int i) => CartProductItem(product: products[i]),
+                      itemBuilder: (_, int i) => CartProductItemComponent(product: products[i]),
                       itemCount: products.length,
                     );
                   },

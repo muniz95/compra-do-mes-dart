@@ -1,8 +1,8 @@
 import 'package:compra_do_mes/models/product.model.dart';
 import 'package:flutter/material.dart';
 
-class CartProductItem extends StatelessWidget {
-  CartProductItem({this.product});
+class CartProductItemComponent extends StatelessWidget {
+  CartProductItemComponent({this.product});
   
   final Product product;
   
