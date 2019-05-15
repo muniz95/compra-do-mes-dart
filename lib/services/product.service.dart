@@ -14,38 +14,40 @@ class ProductService {
     ),
   );
 
-  String toggleIsCompletedMutation(result, index) {
-    return (
-      """mutation ToggleProduct{
-          update_product(where: {
-            id: {_eq: ${result.data["todo"][index]["id"]}}},
-            _set: {isCompleted: ${!result.data["todo"][index]["isCompleted"]}}) {
-              returning {isCompleted } }
-              }""");
-  }
+}
 
-  String deleteProductMutation(result, index) {
-    return ("""mutation DeleteProduct{       
-                delete_product(where: {id: {_eq: ${result.data["todo"][index]["id"]}}}) {
-                  returning {id} }
-                  }""");
-  }
+String toggleIsCompletedMutation(result, index) {
+  return (
+    """mutation ToggleProduct{
+        update_product(where: {
+          id: {_eq: ${result.data["todo"][index]["id"]}}},
+          _set: {isCompleted: ${!result.data["todo"][index]["isCompleted"]}}) {
+            returning {isCompleted } }
+            }""");
+}
 
-  String addProductMutation(product) {
-    return ("""mutation AddProduct{
-                insert_product(objects: {isCompleted: false, product: "$product"}) {
-                  returning {id} }
-                  }""");
-  }
+String deleteProductMutation(result, index) {
+  return ("""mutation DeleteProduct{       
+              delete_product(where: {id: {_eq: ${result.data["todo"][index]["id"]}}}) {
+                returning {id} }
+                }""");
+}
 
-  String fetchQuery() {
-    return ("""query TodoGet{
-                todo {
-                    id
-                    isCompleted
-                    product
-                    }} """);
-  }
+String addProductMutation(product) {
+  return ("""mutation AddProduct{
+              insert_product(objects: {isCompleted: false, product: "$product"}) {
+                returning {id} }
+                }""");
+}
+
+String fetchQuery() {
+  return ("""query ProductGet{
+              product {
+                  id
+                  name
+                  price
+                  quantity
+                  }} """);
 }
 
 ProductService productService = ProductService();

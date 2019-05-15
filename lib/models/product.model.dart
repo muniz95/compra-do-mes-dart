@@ -9,10 +9,28 @@ class Product {
   double price;
   int quantity;
 
-  Product.map(dynamic obj) {
-    this.name = obj["name"];
-    this.price = obj["price"];
-    this.quantity = obj["quantity"];
+  factory Product.map(Map<String, dynamic> obj) {
+    if (obj == null) {
+      return Product();
+    }
+    return Product(
+      name: obj["name"],
+      price: obj["price"],
+      quantity: obj["quantity"],
+    );
+  }
+
+  // A wrapper that allows the factory method
+  // to be called inside lambda functions
+  static Product fromMap(Map<String, dynamic> obj) => Product.map(obj);
+  static List<Product> fromList(List<dynamic> obj) {
+    if (obj == null) {
+      return [];
+    }
+    return obj
+      .cast<Map<String, dynamic>>()
+      .map(Product.fromMap)
+      .toList();
   }
 
   Map<String, dynamic> toMap() {

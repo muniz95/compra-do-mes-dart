@@ -29,19 +29,23 @@ class _CartPageState extends State<CartPage> {
           body: Column(
             children: <Widget>[
               Flexible(
-                child: StreamBuilder<List<Product>>(
-                  stream: _bloc.products,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      List<Product> products = snapshot.data;
-                      return ListView.builder(
-                        padding: EdgeInsets.all(8.0),
-                        itemBuilder: (_, int i) => CartProductItem(product: products[i]),
-                        itemCount: products.length,
-                      );
+                child: Query(
+                  options: QueryOptions(document: fetchQuery(), pollInterval: 1),
+                  builder: (QueryResult result, {VoidCallback refetch}) {
+                    if (result.errors != null) {
+                      return Text(result.errors.toString());
                     }
-                    return CircularProgressIndicator();
-                  }
+                    if (result.loading) {
+                      return CircularProgressIndicator();
+                    }
+
+                    List<Product> products = Product.fromList(result.data["product"]);
+                    return ListView.builder(
+                      padding: EdgeInsets.all(8.0),
+                      itemBuilder: (_, int i) => CartProductItem(product: products[i]),
+                      itemCount: products.length,
+                    );
+                  },
                 ),
               ),
             ],
